@@ -135,6 +135,19 @@ bool CodeSnippetsManager::loadFromFile(const string& filename) {
     return true;
 }
 
+void CodeSnippetsManager::ViewAllSnippets() {
+    // Check if there are any snippets
+    if (snippets.empty()) {
+        cout << "No snippets to display." << endl;
+        return;
+    }
+
+    // Print each snippet
+    for (const auto& entry : snippets) {
+        cout << "Tag: " << entry.first << endl;
+        cout << "Code: " << entry.second << endl << endl;
+    }
+}
 
 
 
@@ -145,16 +158,17 @@ bool CodeSnippetsManager::loadFromFile(const string& filename) {
 
 
 
-bool CodeSnippetsManager::IsDuplicateTag(const string& tag) {
+
+/*bool CodeSnippetsManager::IsDuplicateTag(const string& tag) {
     // Check if the tag already exists in the snippets map
     if (snippets.find(tag) != snippets.end()) {
         cout << "Error: A snippet with tag '" << tag << "' already exists." << endl;
         return true; // Duplicate tag found
     }
     return false; // No duplicate tag found
-}
+}*/
 
-bool CodeSnippetsManager::IsDuplicateCode() {
+/*bool CodeSnippetsManager::IsDuplicateCode() {
     unordered_map<string, string> codeMap; // Map to store code snippets with their tags
     
     // Iterate through snippets
@@ -178,42 +192,7 @@ bool CodeSnippetsManager::IsDuplicateCode() {
     
     // No duplicate code found
     return false;
-}
-
-void CodeSnippetsManager::ViewAllSnippets() {
-    // Check if there are any snippets
-    if (snippets.empty()) {
-        cout << "No snippets to display." << endl;
-        return;
-    }
-
-    // Print header
-    cout << "--------------------------------------------------" << endl;
-    cout << "| Tag             | Code                         |" << endl;
-    cout << "--------------------------------------------------" << endl;
-
-    // Print each snippet
-    for (const auto& entry : snippets) {
-        cout << "| " << setw(16) << left << entry.first << " | " << setw(29) << left << entry.second << " |" << endl;
-    }
-
-    // Print footer
-    cout << "--------------------------------------------------" << endl;
-}
-
-/*void CodeSnippetsManager::RetrieveSnippet(const string& tag) {
-    auto it = snippets.find(tag);
-    if (it != snippets.end()) {
-        cout << "--------------------------------------------------" << endl;
-        cout << "| Tag             | Code                         |" << endl;
-        cout << "--------------------------------------------------" << endl;
-        cout << "| " << setw(16) << left << it->first << " | " << setw(29) << left << it->second << " |" << endl;
-        cout << "--------------------------------------------------" << endl;
-    } else {
-        cout << "No Snippets found for tag " << tag << "." << endl;
-    }
-}
-*/
+}*/
 
 /*void CodeSnippetsManager::SearchSnippetBySubstring(const string& substring) {
     vector<string> matchingTags;

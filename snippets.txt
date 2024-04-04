@@ -1,0 +1,13 @@
+Tag: #
+Code: #include <iostream>
+#include <string>
+{
+	ccode
+}
+
+Tag: for
+Code: for ( int i=0 ; i<n ; I++ )
+{
+djdfk}
+}
+

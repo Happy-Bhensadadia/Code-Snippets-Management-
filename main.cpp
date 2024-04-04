@@ -25,7 +25,8 @@ int main(){
         cout << "3. Remove Snippet" << endl;             //deletion in map(hashtable)
         cout << "4. Edit Snippet" << endl;
         cout << "5. Edit Snippet Tag" << endl;
-        cout << "6. Exit" << endl;
+        cout << "6. View All Snippets" << endl;
+        cout << "0. Exit" << endl;
         cout << "Choose an option: ";
     
         int choise;
@@ -76,7 +77,11 @@ int main(){
             cin >> tag;
             manager.EditSnippetTag(tag);
         }
-        else if( choise == 6 ){
+        else if ( choise == 6 ){
+            string tag;
+            manager.ViewAllSnippets();
+        }
+        else if( choise == 0 ){
             //system("color 0D");
             manager.saveToFile("snippets.txt");
             cout << "Exiting the program." << endl;
