@@ -149,26 +149,15 @@ void CodeSnippetsManager::ViewAllSnippets() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-/*bool CodeSnippetsManager::IsDuplicateTag(const string& tag) {
+bool CodeSnippetsManager::IsDuplicateTag(const string& tag) {
     // Check if the tag already exists in the snippets map
     if (snippets.find(tag) != snippets.end()) {
-        cout << "Error: A snippet with tag '" << tag << "' already exists." << endl;
         return true; // Duplicate tag found
     }
     return false; // No duplicate tag found
-}*/
+}
 
-/*bool CodeSnippetsManager::IsDuplicateCode() {
+bool CodeSnippetsManager::IsDuplicateCode() {        //its not working!!!!!!!!!!!!!!!!!!!!!!!!!!!
     unordered_map<string, string> codeMap; // Map to store code snippets with their tags
     
     // Iterate through snippets
@@ -192,7 +181,8 @@ void CodeSnippetsManager::ViewAllSnippets() {
     
     // No duplicate code found
     return false;
-}*/
+}
+
 
 /*void CodeSnippetsManager::SearchSnippetBySubstring(const string& substring) {
     vector<string> matchingTags;

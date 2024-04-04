@@ -37,16 +37,26 @@ int main(){
             string tag , code;
             cout << "Enter Tag: " ;
             cin >> tag;
-            cin.ignore();
-            cout << "Enter code snippet:\n";
-            cout << "(Enter !! at the end of the code snippet)" << endl;
-            string line;
-            code = "";
-            while(getline(cin,line) && line != "!!"){                       //while loop to get multiple lines as input
-                code += line + "\n";
+            if(!manager.IsDuplicateTag(tag)){
+                cin.ignore();
+                cout << "Enter code snippet:" << endl;
+                cout << "(Enter !! at the end of the code snippet)" << endl;
+
+                string line;
+                code = "";
+                while(getline(cin,line) && line != "!!"){                       //while loop to get multiple lines as input
+                    code += line + "\n";
+                }
+                //if(!manager.IsDuplicateCode()){
+                    manager.AddSnippet(tag,code);
+                    cout << "Snippet Added." << endl;
+                //}else if(manager.IsDuplicateCode()){
+                   // cout << "Error: A snippet with this code already exists.Under the tag-------" << endl;
+               // }
             }
-            manager.AddSnippet(tag,code);
-            cout << "Snippet Added." << endl;
+            else{
+                cout << "Error: A snippet with tag '" << tag << "' already exists." << endl;
+            }
 
         }
         else if( choise == 2 ){

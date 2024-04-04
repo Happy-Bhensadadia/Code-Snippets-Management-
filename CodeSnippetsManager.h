@@ -27,3 +27,12 @@ class CodeSnippetsManager{
 
 
 #endif //CODE_SNIPPETS_MANAGER_H
+
+
+
+
+/* there is a issue that we can address is that we are having a function called IsDuplicateTag 
+which we are calling in the function AddSnippet which takes ccare that there is no snippet added under same tag 
+can we do the same for checking the code of snippets if we do so then we wont be able to check that in other fuctions
+like edittag, edit code, or retrieve or remove because we hadn't allowed the code to be same neitheer the tag ..........
+.................think on this*/
