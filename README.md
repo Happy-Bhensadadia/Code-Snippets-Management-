@@ -1,4 +1,6 @@
 # IT206
 Capstone Project
-132
+
+Code Snippets Manager in C++.
+
 
