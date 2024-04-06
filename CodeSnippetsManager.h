@@ -23,7 +23,7 @@ class CodeSnippetsManager{
         bool IsDuplicateTag(const string& tag);
         bool IsDuplicateCode(const string& code);
         void ViewAllSnippets();
-        void SearchSnippetBySubstring(const string& substring);
+        void FindToRetrieveSnippet(const string& substring);
 };
 
 

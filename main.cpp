@@ -21,12 +21,11 @@ int main(){
         cout << endl;
         //system("color 0C");
         cout << "1. Add Snippet" << endl;                //insertion in map(hashtable)
-        cout << "2. Retrieve Sippet" << endl;            //searching in map(hashtable)
+        cout << "2. Find to Retrieve Sippet" << endl;            //searching in map(hashtable)
         cout << "3. Remove Snippet" << endl;             //deletion in map(hashtable)
         cout << "4. Edit Snippet" << endl;
         cout << "5. Edit Snippet Tag" << endl;
         cout << "6. View All Snippets" << endl;
-        cout << "7. search by substring " << endl;
         cout << "0. Exit" << endl;
         cout << "Choose an option: ";
     
@@ -62,7 +61,8 @@ int main(){
             string tag;
             cout << "Enter Tag to retrieve Snippet: ";
             cin >> tag;
-            manager.RetrieveSnippet(tag);
+            cin.ignore();
+            manager.FindToRetrieveSnippet(tag);
         }
         else if( choise == 3 ){
             //system("color 0C");
@@ -88,11 +88,6 @@ int main(){
         else if ( choise == 6 ){
             string tag;
             manager.ViewAllSnippets();
-        }
-        else if ( choise == 7){
-            string sub;
-            cin.ignore();
-            manager.SearchSnippetBySubstring(sub);
         }
         else if( choise == 0 ){
             //system("color 0D");

@@ -173,7 +173,7 @@ bool CodeSnippetsManager::IsDuplicateCode(const string& code) {
     return false;
 }
 
-void CodeSnippetsManager::SearchSnippetBySubstring(const string& substring) {
+void CodeSnippetsManager::FindToRetrieveSnippet(const string& substring) {
     vector<string> matchingTags;
 
     // Iterate through snippets to find tags containing the substring
