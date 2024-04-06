@@ -203,7 +203,7 @@ bool CodeSnippetsManager::IsDuplicateCode(const string& code) {
         const string& existingCode = entry.second;
         if (existingCode == code) {
             // Identical code found in a different snippet
-            cout << "Suggestion: This code snippet already exists under the tag '" << entry.first << "'." << endl;
+            cout << "-" << entry.first << "." << endl;
             return true;
         }
     }

@@ -50,7 +50,7 @@ int main(){
                     manager.AddSnippet(tag, code);
                     cout << "Snippet Added." << endl;
                 } else {
-                    cout << "Suggestion: Code snippet already exists under another tag." << endl;
+                    cout << "Suggestion: Code snippet already exists under above shown tag." << endl;
                 }
             } else {
                 cout << "Error: A snippet with tag '" << tag << "' already exists." << endl;
