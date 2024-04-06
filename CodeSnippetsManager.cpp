@@ -5,6 +5,7 @@
 #include <map>
 #include <unordered_map>
 #include <iomanip>
+#include <vector>
 
 
 void CodeSnippetsManager :: AddSnippet( const string& tag , const string& code ){
@@ -157,25 +158,14 @@ bool CodeSnippetsManager::IsDuplicateTag(const string& tag) {
     return false; // No duplicate tag found
 }
 
-bool CodeSnippetsManager::IsDuplicateCode() {        //its not working!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    unordered_map<string, string> codeMap; // Map to store code snippets with their tags
-    
-    // Iterate through snippets
+bool CodeSnippetsManager::IsDuplicateCode(const string& code) {
+    // Iterate through existing snippets
     for (const auto& entry : snippets) {
-        const string& tag = entry.first;
-        const string& code = entry.second;
-        
-        // Check if code is already present in the codeMap
-        auto it = codeMap.find(code);
-        if (it != codeMap.end()) {
-            const string& existingTag = it->second;
-            if (existingTag != tag) {
-                // Identical code found in snippets with different tags
-                return true;
-            }
-        } else {
-            // Store code in codeMap with its corresponding tag
-            codeMap[code] = tag;
+        const string& existingCode = entry.second;
+        if (existingCode == code) {
+            // Identical code found in a different snippet
+            cout << "Suggestion: This code snippet already exists under the tag '" << entry.first << "'." << endl;
+            return true;
         }
     }
     
@@ -183,8 +173,7 @@ bool CodeSnippetsManager::IsDuplicateCode() {        //its not working!!!!!!!!!!
     return false;
 }
 
-
-/*void CodeSnippetsManager::SearchSnippetBySubstring(const string& substring) {
+void CodeSnippetsManager::SearchSnippetBySubstring(const string& substring) {
     vector<string> matchingTags;
 
     // Iterate through snippets to find tags containing the substring
@@ -213,4 +202,4 @@ bool CodeSnippetsManager::IsDuplicateCode() {        //its not working!!!!!!!!!!
         RetrieveSnippet(chosenTag);
     }
 }
-*/
+

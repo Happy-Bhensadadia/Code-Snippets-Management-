@@ -26,38 +26,36 @@ int main(){
         cout << "4. Edit Snippet" << endl;
         cout << "5. Edit Snippet Tag" << endl;
         cout << "6. View All Snippets" << endl;
+        cout << "7. search by substring " << endl;
         cout << "0. Exit" << endl;
         cout << "Choose an option: ";
     
         int choise;
         cin >> choise;
 
-        if( choise == 1 ){
-            //system("color 0A");
-            string tag , code;
-            cout << "Enter Tag: " ;
+        if (choise == 1) {
+            string tag, code;
+            cout << "Enter Tag: ";
             cin >> tag;
-            if(!manager.IsDuplicateTag(tag)){
+            if (!manager.IsDuplicateTag(tag)) {
                 cin.ignore();
                 cout << "Enter code snippet:" << endl;
                 cout << "(Enter !! at the end of the code snippet)" << endl;
 
                 string line;
                 code = "";
-                while(getline(cin,line) && line != "!!"){                       //while loop to get multiple lines as input
+                while (getline(cin, line) && line != "!!") {
                     code += line + "\n";
                 }
-                //if(!manager.IsDuplicateCode()){
-                    manager.AddSnippet(tag,code);
+                if (!manager.IsDuplicateCode(code)) {
+                    manager.AddSnippet(tag, code);
                     cout << "Snippet Added." << endl;
-                //}else if(manager.IsDuplicateCode()){
-                   // cout << "Error: A snippet with this code already exists.Under the tag-------" << endl;
-               // }
-            }
-            else{
+                } else {
+                    cout << "Suggestion: Code snippet already exists under another tag." << endl;
+                }
+            } else {
                 cout << "Error: A snippet with tag '" << tag << "' already exists." << endl;
             }
-
         }
         else if( choise == 2 ){
             //system("color 0E");
@@ -90,6 +88,11 @@ int main(){
         else if ( choise == 6 ){
             string tag;
             manager.ViewAllSnippets();
+        }
+        else if ( choise == 7){
+            string sub;
+            cin.ignore();
+            manager.SearchSnippetBySubstring(sub);
         }
         else if( choise == 0 ){
             //system("color 0D");

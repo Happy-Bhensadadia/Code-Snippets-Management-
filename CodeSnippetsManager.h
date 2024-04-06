@@ -21,8 +21,9 @@ class CodeSnippetsManager{
         bool saveToFile(const string& filename);
         bool loadFromFile(const string& filename);
         bool IsDuplicateTag(const string& tag);
-        bool IsDuplicateCode();
+        bool IsDuplicateCode(const string& code);
         void ViewAllSnippets();
+        void SearchSnippetBySubstring(const string& substring);
 };
 
 
