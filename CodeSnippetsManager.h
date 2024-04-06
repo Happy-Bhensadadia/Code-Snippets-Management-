@@ -17,13 +17,14 @@ class CodeSnippetsManager{
         void RemoveSnippet( const string& tag);
         void EditSnippet( const string& tag);
         void EditSnippetTag( const string& tag);
+        void FindToRetrieveSnippet(const string& substring);
+        void ViewAllSnippets();
 
         bool saveToFile(const string& filename);
         bool loadFromFile(const string& filename);
         bool IsDuplicateTag(const string& tag);
         bool IsDuplicateCode(const string& code);
-        void ViewAllSnippets();
-        void FindToRetrieveSnippet(const string& substring);
+
 };
 
 
