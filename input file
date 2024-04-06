@@ -1,0 +1,848 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+// Create and open a text file
+ofstream Myfile("input.txt");
+
+// Write to the file
+Myfile << "Tag:Hello world
+Code:#include <iostream>
+
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+Tag:Varaible declaration and initialisation
+Code:int x = 10;
+float pi = 3.14;
+char letter = 'A';
+Tag:User input 
+Code:#include <iostream>
+#include <string>
+
+int main() {
+    std::string name;
+    std::cout << "Enter your name: ";
+    std::cin >> name;
+    std::cout << "Hello, " << name << "!" << std::endl;
+    return 0;
+}
+Tag:if-else
+Code:int x = 5;
+if (x > 0) {
+    std::cout << "x is a positive integer." << std::endl;
+} else {
+    std::cout << "x is not a positive integer." << std::endl;
+}
+Tag:for loop
+Code:for (int i = 0; i < 10; ++i) {
+    std::cout << i << std::endl;
+}
+Tag:while loop
+Code:int i = 0;
+while (i < 10) {
+    std::cout << i << std::endl;
+    ++i;
+}
+Tag:Array declaration and initialisation
+Code:int arr[4] = {2,4,6,8};
+Tag:Function declaration
+Code: int multiply(int a, int b) {
+    return a*b;
+}
+Tag:Function call
+Code:int result = multiply(2, 5);
+Tag:recursion
+Code:int factorial(int n) {
+    if (n == 0) return 1;
+    return n * factorial(n - 1);
+}
+Tag:pionters
+Code:int x = 10;
+int* ptr = &x;
+std::cout << *ptr << std::endl; // Output: 10
+Tag:reference
+Code:int x = 10;
+int& ref = x;
+ref = 20;
+std::cout << x << std::endl; // Output: 20
+Tag:class declaration
+Code:class Sqaure {
+public:
+    int length;
+};
+Tag:Object creation
+Code:Sqaure sq;
+rect.length = 10;
+Tag:class constructor
+Code:class Rectangle {
+public:
+    int width;
+    int height;
+    
+    Rectangle(int w, int h) : width(w), height(h) {}
+};
+Tag:class destructor
+Code:class MyClass {
+public:
+    ~MyClass() {
+        std::cout << "Destructor called" << std::endl;
+    }
+};
+Tag:class inheritance
+Code:class Square : public Rectangle {
+public:
+    Square(int side) : Rectangle(side, side) {}
+};
+Tag:virtual functions
+Code:class Base {
+public:
+    virtual void show() {
+        std::cout << "Base class" << std::endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void show() override {
+        std::cout << "Derived class" << std::endl;
+    }
+};
+Tag:file input/output
+Code:#include <fstream>
+
+int main() {
+    std::ofstream outfile("example.txt");
+    outfile << "Hello, World!";
+    outfile.close();
+    return 0;
+}
+Tag:exception handling
+Code:#include <iostream>
+
+int main() {
+    try {
+        throw std::runtime_error("An error occurred");
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    return 0;
+}
+Tag:lambda functions
+Code:#include <iostream>
+
+int main() {
+    auto multiply = [](int a, int b) { return a*b; };
+    std::cout << multiply(2, 5) << std::endl; // Output: 10
+    return 0;
+}
+Tag:stl vector
+Code:#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4};
+    vec.push_back(5);
+    return 0;
+}
+Tag:stl map
+Code:#include <map>
+
+int main() {
+    std::map<std::string, int> myMap;
+    myMap["apple"] = 10;
+    return 0;
+}
+Tag:stl set
+Code:#include <set>
+
+int main() {
+    std::set<int> mySet = {1, 2, 3, 4};
+    mySet.insert(5);
+    return 0;
+}
+Tag:sorting
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {2,8,5,4,1,3,7,1};
+    std::sort(vec.begin(), vec.end());
+    return 0;
+}
+Tag:searching 
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {2,8,5,4,1,3,7,1};
+    auto it = std::find(vec.begin(), vec.end(), 4);
+    if (it != vec.end()) {
+        std::cout << "Element found at index: " << std::distance(vec.begin(), it) << std::endl;
+    } else {
+        std::cout << "Element not found" << std::endl;
+    }
+    return 0;
+}
+Tag:binary search
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    bool found = std::binary_search(vec.begin(), vec.end(), 2);
+    return 0;
+}
+Tag:random number generation
+Code:#include <iostream>
+#include <random>
+
+int main() {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(1, 6);
+    std::cout << "Random number: " << dis(gen) << std::endl;
+    return 0;
+}
+Tag:Multithreading
+Code:#include <iostream>
+#include <thread>
+
+void threadFunction() {
+    std::cout << "Hello from thread!" << std::endl;
+}
+
+int main() {
+    std::thread t(threadFunction);
+    t.join();
+    return 0;
+}
+Tag:mutex(locking mechanism)
+Code:#include <iostream>
+#include <thread>
+#include <mutex>
+
+std::mutex mtx;
+
+void printNumbers() {
+    mtx.lock();
+    for (int i = 0; i < 10; ++i) {
+        std::cout << i << std::endl;
+    }
+    mtx.unlock();
+}
+
+int main() {
+    std::thread t1(printNumbers);
+    std::thread t2(printNumbers);
+    t1.join();
+    t2.join();
+    return 0;
+}
+Tag:RAII-smart pointers
+Code:#include <memory>
+
+int main() {
+    std::shared_ptr<int> ptr = std::make_shared<int>(5);
+    return 0;
+}
+Tag:type casting
+Code:double x = 3.14;
+int y = static_cast<int>(x);
+Tag:enumerations
+Code:enum Color {RED, GREEN, BLUE};
+Color c = RED;
+Tag:namespaces
+Code:namespace math {
+    int multiply(int a, int b) {
+        return a*b;
+    }
+}
+
+int result = math::multiply(2, 5);
+Tag:preprocessor directives
+Code:#define PI 3.14
+Tag:conditional compilation
+Code:#ifdef DEBUG
+    // Debugging code
+#endif
+Tag:inline functions
+Code:inline int add(int a, int b) {
+    return a + b;
+}
+Tag:static keywords
+Code:class MyClass {
+public:
+    static int cnt; // cnt=count
+};
+
+int MyClass::cnt = 0;
+Tag:const keyword
+Code:const int x = 10;
+Tag:volatile keyword
+Code:volatile int var;
+Tag:function overloading
+Code:int add(int a, int b) {
+    return a + b;
+}
+
+double add(double a, double b) {
+    return a + b;
+}
+Tag:operation overloading
+Code:class Complex {
+public:
+    int real, imag;
+    Complex operator+(const Complex& other) {
+        Complex result;
+        result.real = real + other.real;
+        result.imag = imag + other.imag;
+        return result;
+    }
+};
+Tag:friend function
+Code:class MyClass {
+private:
+    int x;
+public:
+    friend void friendFunction(MyClass obj);
+};
+
+void friendFunction(MyClass obj) {
+    std::cout << "Value of x: " << obj.x << std::endl;
+}
+Tag:default arguements
+Code:void print(int x, int y = 10) {
+    std::cout << "x: " << x << ", y: " << y << std::endl;
+}
+Tag:function templates
+Code:template<typename T>
+T add(T a, T b) {
+    return a + b;
+}
+Tag:class templates
+Code:template<typename T>
+class Pair {
+public:
+    T first, second;
+};
+Tag:standard library algorithm-max_element
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {2,8,5,4,1,3,7,1};
+    auto it = std::max_element(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-min_element
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {2,8,5,4,1,3,7,1};
+    auto it = std::min_element(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-count
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5, 1, 2, 1};
+    int num = std::count(vec.begin(), vec.end(), 1);
+    return 0;
+}
+Tag:standard library algorithm-reverse
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::reverse(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-find if
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    auto it = std::find_if(vec.begin(), vec.end(), [](int x) { return x > 3; });
+    return 0;
+}
+Tag:standard library algorithm-transform
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::transform(vec.begin(), vec.end(), vec.begin(), [](int x) { return x * 2; });
+    return 0;
+}
+Tag:standard library algorithm-sort
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {2,8,5,4,1,3,7,1};
+    std::sort(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-shuffle
+Code:#include <algorithm>
+#include <vector>
+#include <random>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(vec.begin(), vec.end(), g);
+    return 0;
+}
+Tag:standard library algorithm-accumulate
+Code:#include <numeric>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    int sum = std::accumulate(vec.begin(), vec.end(), 0);
+    return 0;
+}
+Tag:standard library algorithm-adjacent_find
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 4, 5};
+    auto it = std::adjacent_find(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-binary search
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    bool found = std::binary_search(vec.begin(), vec.end(), 3);
+    return 0;
+}
+Tag:standard library algorithm-copy
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 4, 5};
+    std::vector<int> vec2(5);
+    std::copy(vec1.begin(), vec1.end(), vec2.begin());
+    return 0;
+}
+Tag:standard library algorithm-equal:
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 4, 5};
+    std::vector<int> vec2 = {1, 2, 3, 4, 5};
+    bool areEqual = std::equal(vec1.begin(), vec1.end(), vec2.begin());
+    return 0;
+}
+Tag:standard library algorithm-fill
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec(5);
+    std::fill(vec.begin(), vec.end(), 0);
+    return 0;
+}
+Tag:standard library algorithm-find_end
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 3, 4, 5};
+    std::vector<int> subVec = {3, 4};
+    auto it = std::find_end(vec.begin(), vec.end(), subVec.begin(), subVec.end());
+    return 0;
+}
+Tag:standard library algorithm-find_first_of
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::vector<int> targets = {4, 6};
+    auto it = std::find_first_of(vec.begin(), vec.end(), targets.begin(), targets.end());
+    return 0;
+}
+Tag:standard library algorithm-is_permutaion
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 4, 5};
+    std::vector<int> vec2 = {2, 3, 1, 5, 4};
+    bool isPermutation = std::is_permutation(vec1.begin(), vec1.end(), vec2.begin());
+    return 0;
+}
+Tag:standard library algorithm-lexicographical_compare
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 4, 5};
+    std::vector<int> vec2 = {1, 2, 3, 5, 4};
+    bool result = std::lexicographical_compare(vec1.begin(), vec1.end(), vec2.begin(), vec2.end());
+    return 0;
+}
+Tag:standard library algorithm-nth_element
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {2,8,5,4,1,3,7,1};
+    std::nth_element(vec.begin(), vec.begin() + 6, vec.end());
+    return 0;
+}
+Tag:standard library algorithm-partition
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {3, 1, 4, 1, 5, 9, 2, 6};
+    std::partition(vec.begin(), vec.end(), [](int x) { return x % 2 == 0; });
+    return 0;
+}
+Tag:standard library algorithm-random_shuffle
+Code:#include <algorithm>
+#include <vector>
+#include <random>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::random_shuffle(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-remove
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5, 1, 2, 1};
+    std::remove(vec.begin(), vec.end(), 1);
+    return 0;
+}
+Tag:standard library algorithm-remove_if
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5, 6, 7, 8};
+    std::remove_if(vec.begin(), vec.end(), [](int x) { return x % 2 == 0; });
+    return 0;
+}
+Tag:standard library algorithm-replace
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5, 1, 2, 1};
+    std::replace(vec.begin(), vec.end(), 1, 0);
+    return 0;
+}
+Tag:standard library algorithm-replace_if
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5, 6, 7, 8};
+    std::replace_if(vec.begin(), vec.end(), [](int x) { return x % 2 == 0; }, 0);
+    return 0;
+}
+Tag:standard library algorithm-reverse_copy
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::vector<int> copyVec(vec.size());
+    std::reverse_copy(vec.begin(), vec.end(), copyVec.begin());
+    return 0;
+}
+Tag:standard library algorithm-rotate
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::rotate(vec.begin(), vec.begin() + 2, vec.end());
+    return 0;
+}
+Tag:standard library algorithm-search
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 3, 4, 5};
+    std::vector<int> subVec = {3, 4};
+    auto it = std::search(vec.begin(), vec.end(), subVec.begin(), subVec.end());
+    return 0;
+}
+Tag:standard library algorithm-search_n
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 2, 2, 3, 2, 2, 4};
+    auto it = std::search_n(vec.begin(), vec.end(), 2, 2);
+    return 0;
+}
+Tag:standard library algorithm-swap_ranges
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 4, 5};
+    std::vector<int>
+Tag:standard library algorithm-unique
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 3, 4, 4, 4, 5};
+    auto it = std::unique(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-is_sorted
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    bool sorted = std::is_sorted(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-partition_point
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    auto it = std::partition_point(vec.begin(), vec.end(), [](int x) { return x < 3; });
+    return 0;
+}
+Tag:standard library algorithm-minmax
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {3, 1, 4, 1, 5, 9, 2, 6};
+    auto [minVal, maxVal] = std::minmax_element(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-mismatch
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 4, 5};
+    std::vector<int> vec2 = {1, 2, 3, 5, 4};
+    auto pair = std::mismatch(vec1.begin(), vec1.end(), vec2.begin());
+    return 0;
+}
+Tag:standard library algorithm-equal_range
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 2, 3, 3, 3, 4, 5};
+    auto range = std::equal_range(vec.begin(), vec.end(), 3);
+    return 0;
+}
+Tag:standard library algorithm-sample
+Code:#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <random>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::sample(vec.begin(), vec.end(), std::ostream_iterator<int>(std::cout, " "), 3, g);
+    return 0;
+}
+Tag:standard library algorithm-shuffle_order
+Code:#include <algorithm>
+#include <vector>
+#include <random>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle_order(vec.begin(), vec.end(), g);
+    return 0;
+}
+Tag:standard library algorithm-stable_partition
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::stable_partition(vec.begin(), vec.end(), [](int x) { return x % 2 == 0; });
+    return 0;
+}
+Tag:standard library algorithm-clamp
+Code:#include <algorithm>
+
+int main() {
+    int x = 10;
+    int y = std::clamp(x, 1, 5);
+    return 0;
+}
+Tag:standard library algorithm-lcm
+Code:#include <numeric>
+
+int main() {
+    int x = 6, y = 9;
+    int result = std::lcm(x, y);
+    return 0;
+}
+Tag:standard library algorithm-gcd
+Code:#include <numeric>
+
+int main() {
+    int x = 6, y = 9;
+    int result = std::gcd(x, y);
+    return 0;
+}
+Tag:standard library algorithm-mid_point
+Code:#include <numeric>
+
+int main() {
+    int x = 10, y = 20;
+    auto midpoint = std::midpoint(x, y);
+    return 0;
+}
+Tag:standard libary algorithm-reduce
+Code:#include <numeric>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    int result = std::reduce(vec.begin(), vec.end());
+    return 0;
+}
+Tag:standard library algorithm-shift_left
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::shift_left(vec.begin(), vec.end(), 2);
+    return 0;
+}
+Tag:standard library algorithm-shift_right
+Code:#include <algorithm>
+#include <vector>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::shift_right(vec.begin(), vec.end(), 2);
+    return 0;
+}
+Tag:standard library algorithm-to_chars
+Code:#include <charconv>
+
+int main() {
+    char buffer[100];
+    int value = 123;
+    auto [ptr, ec] = std::to_chars(buffer, buffer + sizeof(buffer), value);
+    return 0;
+}
+Tag:standard library algorithm-from_chars
+Code:#include <charconv>
+
+int main() {
+    char buffer[] = "123";
+    int value;
+    auto [ptr, ec] = std::from_chars(buffer, buffer + sizeof(buffer), value);
+    return 0;
+}
+Tag:standard library algorithm-cbrt
+Code:#include <cmath>
+
+int main() {
+    double x = 27;
+    double result = std::cbrt(x);
+    return 0;
+}
+Tag:standard library algorithm-hypot
+Code:#include <cmath>
+
+int main() {
+    double x = 3, y = 4;
+    double result = std::hypot(x, y);
+    return 0;
+}
+Tag:standard library algorithm-remainder
+Code:#include <cmath>
+
+int main() {
+    double x = 10, y = 3;
+    double result = std::remainder(x, y);
+    return 0;
+}
+Tag:standard library algorithm-remquo
+Code:#include <cmath>
+
+int main() {
+    double x = 10, y = 3;
+    int quo;
+    double result = std::remquo(x, y, &quo);
+    return 0;
+}
+Tag:standard library algorithm-nextafter
+Code:#include <cmath>
+
+int main() {
+    double x = 1.0;
+    double result = std::nextafter(x, 2.0);
+    return 0;
+}
+Tag:standard library algorithm-fdim
+Code:#include <cmath>
+
+int main() {
+    double x = 3, y = 5;
+    double result = std::fdim(x, y);
+    return 0
+}";
+
+
+// Close the file
+MyFile.close();
+}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
