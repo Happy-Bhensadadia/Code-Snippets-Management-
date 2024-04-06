@@ -8,13 +8,13 @@
 #include <vector>
 
 
-void CodeSnippetsManager :: AddSnippet( const string& tag , const string& code ){
+void CodeSnippetsManager::AddSnippet( const string& tag , const string& code ){
 
     snippets[tag]=code;                                        //setting key-value pair
 }
 
 
-void CodeSnippetsManager :: RetrieveSnippet( const string& tag){
+void CodeSnippetsManager::RetrieveSnippet( const string& tag){
 
     auto it = snippets.find(tag);                 //it is iterator. it is a inbuilt in STL for map.
     if( it != snippets.end()){
