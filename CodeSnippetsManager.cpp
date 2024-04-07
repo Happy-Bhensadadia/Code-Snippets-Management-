@@ -155,7 +155,7 @@ void CodeSnippetsManager::ViewAllSnippets() {
     }
 }
 
-bool CodeSnippetsManager :: saveToFile( const string& filename){
+bool CodeSnippetsManager::saveToFile( const string& filename){
 
     ofstream outfile(filename);
     if( !outfile ){                                                       //writing and storing the snippet in a file
