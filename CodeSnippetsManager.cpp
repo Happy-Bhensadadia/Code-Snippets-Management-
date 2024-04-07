@@ -18,7 +18,7 @@ void CodeSnippetsManager :: RetrieveSnippet( const string& tag){
 
     auto it = snippets.find(tag);                 //it is iterator. it is a inbuilt in STL for map.
     if( it != snippets.end()){
-        cout << "Snippet for tag" << tag << ":" << endl;
+        cout << "Snippet for tag " << tag << ":" << endl;
         cout << it->second << endl;
     }
     else{
@@ -58,61 +58,87 @@ void CodeSnippetsManager::FindToRetrieveSnippet(const string& substring) {
 }
 
 
-void CodeSnippetsManager::RemoveSnippet(const string& tag) {
-    auto it = snippets.find(tag);
-    if (it != snippets.end()) {
-        snippets.erase(it);                                                      //deleting snippets from the file
-        cout << "Snippet with tag '" << tag << "' removed." << endl;
+void CodeSnippetsManager::RemoveSnippet(const string& substring) {
+    vector<string> matchingTags;
+
+    // Iterate through snippets to find tags containing the substring
+    for (const auto& entry : snippets) {
+        const string& currentTag = entry.first;
+        if (currentTag.find(substring) != string::npos) {
+            matchingTags.push_back(currentTag);
+        }
+    }
+
+    // Display matching tags
+    if (matchingTags.empty()) {
+        cout << "No tags found containing the substring '" << substring << "'." << endl;
     } else {
-        cout << "No Snippet found for tag '" << tag << "'." << endl;
-    }   
-
-}
-
-
-void CodeSnippetsManager::EditSnippet(const string& tag) {
-    auto it = snippets.find(tag);
-    if (it != snippets.end()) {
-        cout << "Enter the new code for the snippet with tag '" << tag << "':" << endl;
-        string newCode;
-        string line;
-        
-        // Read lines until the delimiter "!!" is encountered
-        while (getline(cin, line) && line != "!!") {
-            newCode += line + "\n";
+        cout << "Tags containing the substring '" << substring << "':" << endl;
+        for (const string& tag : matchingTags) {
+            cout << "- " << tag << endl;
         }
 
-        // Update the code for the given tag
-        snippets[tag] = newCode;
+        // Ask user to choose a tag
+        string chosenTag;
+        cout << "Enter the tag you want to remove: ";
+        cin >> chosenTag; 
 
-        cout << "Snippet with tag '" << tag << "' edited." << endl;
-    } else {
-        cout << "No Snippet found for tag '" << tag << "'." << endl;
-    }
-}
-
-
-void CodeSnippetsManager::EditSnippetTag(const string& tag) {
-    auto it = snippets.find(tag);
-    if (it != snippets.end()) {
-        cout << "Enter the new tag for the snippet with tag '" << tag << "':" << endl;
-        string newTag;
-        cin >> newTag;
-
-        if (newTag != tag && snippets.find(newTag) == snippets.end()) {
-            // Update the tag for the given snippet
-            snippets[newTag] = it->second;
-            snippets.erase(it);
-            cout << "Tag for the snippet '" << tag << "' changed to '" << newTag << "'." << endl;
-        } else if (newTag == tag) {
-            cout << "The new tag is the same as the existing one." << endl;
+        auto it = snippets.find(chosenTag);
+        if (it != snippets.end()) {
+            snippets.erase(it); // Deleting the snippet from the map
+            cout << "Snippet with tag '" << chosenTag << "' removed." << endl;
         } else {
-            cout << "The new tag is already used for another snippet." << endl;
-        }
-    } else {
-        cout << "No Snippet found for tag '" << tag << "'." << endl;
+            cout << "No Snippet found for tag '" << chosenTag << "'." << endl;
+        }   
     }
 }
+
+
+void CodeSnippetsManager::EditSnippetTag(const string& substring) {
+    vector<string> matchingTags;
+
+    // Iterate through snippets to find tags containing the substring
+    for (const auto& entry : snippets) {
+        const string& tag = entry.first;
+        if (tag.find(substring) != string::npos) {
+            matchingTags.push_back(tag);
+        }
+    }
+
+    // Display matching tags
+    if (matchingTags.empty()) {
+        cout << "No tags found containing the substring '" << substring << "'." << endl;
+    } else {
+        cout << "Tags containing the substring '" << substring << "':" << endl;
+        for (const string& tag : matchingTags) {
+            cout << "- " << tag << endl;
+        }
+
+        // Ask user to choose a tag
+        string chosenTag;
+        cout << "Enter the tag ";
+        cin >> chosenTag;
+
+        auto it = snippets.find(chosenTag);
+        if (it != snippets.end()) {
+            cout << "Enter the new tag for the snippet with tag '" << chosenTag << "':" << endl;
+            string newTag;
+            cin >> newTag;
+
+            if (snippets.find(newTag) == snippets.end()) {
+                // Update the tag for the given snippet
+                snippets[newTag] = it->second;
+                snippets.erase(chosenTag);
+                cout << "Tag for the snippet '" << chosenTag << "' changed to '" << newTag << "'." << endl;
+            } else {
+                cout << "The new tag is already used for another snippet." << endl;
+            }
+        } else {
+            cout << "No Snippet found for tag '" << chosenTag << "'." << endl;
+        }
+    }
+}
+
 
 
 void CodeSnippetsManager::ViewAllSnippets() {
@@ -211,6 +237,70 @@ bool CodeSnippetsManager::IsDuplicateCode(const string& code) {
     // No duplicate code found
     return false;
 }
+
+void CodeSnippetsManager::EditSnippet(const string& substring) {
+    vector<string> matchingTags;
+
+    // Iterate through snippets to find tags containing the substring
+    for (const auto& entry : snippets) {
+        const string& tag = entry.first;
+        if (tag.find(substring) != string::npos) {
+            matchingTags.push_back(tag);
+        }
+    }
+
+    // Display matching tags
+    if (matchingTags.empty()) {
+        cout << "No tags found containing the substring '" << substring << "'." << endl;
+    } else {
+        cout << "Tags containing the substring '" << substring << "':" << endl;
+        for (const string& tag : matchingTags) {
+            cout << "- " << tag << endl;
+        }
+
+        // Ask user to choose a tag
+        string chosenTag;
+        cout << "Enter the tag you want to edit snippet for: ";
+        cin >> chosenTag;
+
+        // Check if the chosen tag is valid
+        auto it = snippets.find(chosenTag);
+        if (it != snippets.end()) {
+            // Enter the new code for the snippet
+            cout << "Enter the new code for the snippet with tag '" << chosenTag << "':" << endl;
+            string newCode;
+            string line;
+
+            // Read lines until the delimiter "!!" is encountered
+            while (getline(cin, line) && line != "!!") {
+                newCode += line + "\n";
+            }
+
+            // Check if the new code is not a duplicate under any other tag
+            bool isDuplicate = false;
+            for (const auto& entry : snippets) {
+                const string& tag = entry.first;
+                if (tag != chosenTag && entry.second == newCode) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            // Update the snippet if the new code is not a duplicate under any other tag
+            if (!isDuplicate) {
+                snippets[chosenTag] = newCode;
+                cout << "Snippet with tag '" << chosenTag << "' edited." << endl;
+            } else {
+                cout << "Error: Code snippet already exists under another tag." << endl;
+            }
+        } else {
+            cout << "Error: No snippet found for tag '" << chosenTag << "'." << endl;
+        }
+    }
+}
+
+
+
 
 
 
