@@ -7,7 +7,8 @@ int main(){
 
     CodeSnippetsManager manager;
 
-    //system("color 0F");
+    
+    cout << endl;
     if( manager.loadFromFile("snippets.txt")){
         cout << "Ready to run" << endl;
     }
@@ -16,30 +17,32 @@ int main(){
     } 
 
     while ( true ){
+
         cout << endl;
         cout << endl;
-        cout << endl;
-        //system("color 0C");
+        
         cout << "1. Add Snippet" << endl;                //insertion in map(hashtable)
-        cout << "2. Find to Retrieve Sippet" << endl;            //searching in map(hashtable)
+        cout << "2. Retrieve Sippet" << endl;            //searching in map(hashtable)
         cout << "3. Remove Snippet" << endl;             //deletion in map(hashtable)
-        cout << "4. Edit Snippet" << endl;
+        cout << "4. Edit Snippet Code" << endl;
         cout << "5. Edit Snippet Tag" << endl;
         cout << "6. View All Snippets" << endl;
-        cout << "0. Exit" << endl;
+        cout << "0. Exit" << endl; 
+        cout <<endl;
         cout << "Choose an option: ";
     
         int choise;
         cin >> choise;
 
         if (choise == 1) {
+
             string tag, code;
             cout << "Enter Tag: ";
             cin >> tag;
             if (!manager.IsDuplicateTag(tag)) {
                 cin.ignore();
                 cout << "Enter code snippet:" << endl;
-                cout << "(Enter !! at the end of the code snippet)" << endl;
+                cout << "(Enter !! at the end of the code snippet)" << endl << endl;
 
                 string line;
                 code = "";
@@ -48,18 +51,20 @@ int main(){
                 }
                 if (!manager.IsDuplicateCode(code)) {
                     manager.AddSnippet(tag, code);
+                    cout << endl;
                     cout << "Snippet Added." << endl;
                 } else {
-                    cout << "Suggestion: Code snippet already exists under above shown tag." << endl;
+                    cout << "Error: Code snippet already exists under above shown tag." << endl;
                 }
             } else {
                 cout << "Error: A snippet with tag '" << tag << "' already exists." << endl;
             }
         }
         else if( choise == 2 ){
-            //system("color 0E");
+
             string tag;
-            cout << "Enter Tag to retrieve Snippet: ";
+            cout << "Enter Tag to retrieve Snippet. ";
+            cout << "Tag: ";
             cin >> tag;
             cin.ignore();
             string chosen = manager.FindToRetrieveSnippet(tag);
@@ -67,7 +72,7 @@ int main(){
             manager.saveToFile(chosen);
         }
         else if( choise == 3 ){
-            //system("color 0C");
+
             cout << "Enter the tag for the snippet you want to remove." << endl;
             cout << "Tag: ";
             string tag;
@@ -75,30 +80,35 @@ int main(){
             manager.RemoveSnippet(tag);
         }
         else if ( choise == 4 ) {
+
             string tag;
-            cout << "Enter the tag for the snippet you want to edit: ";
+            cout << "Enter the tag for the snippet you want to edit. " << endl;
+            cout << "Tag: ";
             cin >> tag;
             cin.ignore(); // Clear input buffer
             manager.EditSnippet(tag);
         }
        else if (choise == 5) {
+
             string tag;
-            cout << "Enter the tag for the snippet you want to edit: ";
+            cout << "Enter the tag for the snippet you want to edit. " << endl;
+            cout << "Tag: ";
             cin >> tag;
             manager.EditSnippetTag(tag);
         }
         else if ( choise == 6 ){
+
             string tag;
             manager.ViewAllSnippets();
         }
         else if( choise == 0 ){
-            //system("color 0D");
+
             manager.saveToFile("snippets.txt");
-            cout << "Exiting the program." << endl;
+            cout << endl << "Exiting the program." << endl;
             break;
         }
         else{
-            //system("color 0B");
+
             cout << "Invalid choise. Please choose a valid option." << endl;
         }
     }

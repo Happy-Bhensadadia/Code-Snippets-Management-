@@ -5,7 +5,9 @@
 #include <map>
 using namespace std;
 
-//Declare the methods of class manager - Add, Retrieve, saveTofile, loadfromfile
+/*Declare the methods of class manager - Add, Retrieve, Remove, EditSnippet, EditSnippetTag, ViewAllSnippets,
+  FindToRetrieveSnippet, saveToFile, loadFromFile, IsDuplicateTag, IsduplicateCode*/
+  
 class CodeSnippetsManager{
     private:
         map <string, string> snippets;
