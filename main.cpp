@@ -62,7 +62,9 @@ int main(){
             cout << "Enter Tag to retrieve Snippet: ";
             cin >> tag;
             cin.ignore();
-            manager.FindToRetrieveSnippet(tag);
+            string chosen = manager.FindToRetrieveSnippet(tag);
+            manager.RetrieveSnippet(chosen);
+            manager.saveToFile(chosen);
         }
         else if( choise == 3 ){
             //system("color 0C");
